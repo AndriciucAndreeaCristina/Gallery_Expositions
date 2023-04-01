@@ -2,17 +2,15 @@ package pao.model.exhibitions;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
-import pao.model.artworks.Artwork;
 import pao.model.floorplan.Section;
-import pao.services.impl.ExhibitionInterfaceImplementation;
-
-import java.util.List;
 
 @SuperBuilder
 @Getter
-public class PermanentExhibition extends ExhibitionInterfaceImplementation {
-    private String title;
-    private String description;
+public class PermanentExhibition extends Exhibition implements Comparable<PermanentExhibition> {
     private Section section;
-    private List<Artwork> artworksList;
+
+    @Override
+    public int compareTo(PermanentExhibition o) {
+        return o.getTitle().compareTo(this.getTitle());
+    }
 }

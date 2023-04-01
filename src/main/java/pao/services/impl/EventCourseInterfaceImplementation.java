@@ -1,5 +1,6 @@
 package pao.services.impl;
 
+import lombok.Getter;
 import pao.model.events.Course;
 import pao.model.events.Event;
 import pao.model.events.Person;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Getter
 public class EventCourseInterfaceImplementation implements EventInterface {
     private static List<Course> coursesList = new ArrayList<>();
 
