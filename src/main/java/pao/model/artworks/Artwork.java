@@ -1,5 +1,6 @@
 package pao.model.artworks;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import pao.model.abstracts.AbstractEntity;
@@ -9,10 +10,28 @@ import java.util.List;
 
 @Getter
 @SuperBuilder
-public class Artwork extends AbstractEntity {
+@EqualsAndHashCode
+public class Artwork extends AbstractEntity implements Comparable<Artwork> {
     private Artist creator;
     private String title;
     private Integer yearOfCreation;
     private String description;
     private List<Materials> materialsList;
+    @Override
+    public int compareTo(Artwork o) {
+        int result = o.creator.getFirstName().compareTo(this.creator.getFirstName());
+        if (result == 0)
+        {
+            result = o.creator.getLastName().compareTo(this.creator.getLastName());
+        }
+        if (result == 0)
+        {
+            result = o.yearOfCreation.compareTo(this.yearOfCreation);
+        }
+        if (result == 0)
+        {
+            result = o.title.compareTo(this.title);
+        }
+        return result;
+    }
 }
