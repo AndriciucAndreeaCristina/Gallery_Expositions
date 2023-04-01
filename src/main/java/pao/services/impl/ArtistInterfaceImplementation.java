@@ -28,10 +28,9 @@ public class ArtistInterfaceImplementation implements ArtistInterface {
     });
 
     @Override
-    public Optional<Artist> getArtistsByMovement(String movement) {
-        return artistsList.stream()
-                .filter(artist -> artist.getMovement().equals(movement))
-                .findAny();
+    public SortedSet<Artist> getArtistsByMovement(String movement) {
+        return (SortedSet<Artist>) artistsList.stream()
+                .filter(artist -> artist.getMovement().equals(movement));
     }
 
     @Override

@@ -18,10 +18,9 @@ public class ArtworkInterfaceImplementation implements ArtworkInterface {
     }
 
     @Override
-    public Optional<Artwork> getArtworkByCreator(Artist creator) {
-        return artworksSet.stream()
-                .filter(artwork -> artwork.getCreator().equals(creator))
-                .findAny();
+    public Set<Artwork> getArtworkByCreator(Artist creator) {
+        return (Set<Artwork>) artworksSet.stream()
+                .filter(artwork -> artwork.getCreator().equals(creator));
     }
 
     @Override

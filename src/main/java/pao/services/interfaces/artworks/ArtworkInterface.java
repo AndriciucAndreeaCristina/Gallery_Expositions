@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface ArtworkInterface {
     Optional<Artwork> getArtworkById(UUID id);
-    Optional<Artwork> getArtworkByCreator(Artist creator);
+    Set<Artwork> getArtworkByCreator(Artist creator);
     Optional<Artwork> getArtworkByTitle(String title);
     Set<Artwork> getAllArtworksFromSet();
     void addAllArtworks(Set artworksList);

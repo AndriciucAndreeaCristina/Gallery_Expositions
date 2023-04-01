@@ -7,7 +7,7 @@ import java.util.SortedSet;
 import java.util.UUID;
 
 public interface ArtistInterface {
-    Optional<Artist> getArtistsByMovement(String movement);
+    SortedSet<Artist> getArtistsByMovement(String movement);
     Optional<Artist> getArtistByFirstName(String firstName);
     Optional<Artist> getArtistByLastName(String lastName);
     Optional<Artist> getArtistById(UUID id);
