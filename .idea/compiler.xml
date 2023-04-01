@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Gallery_Expositions" target="19" />
+      <module name="Gallery_Expositions" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
