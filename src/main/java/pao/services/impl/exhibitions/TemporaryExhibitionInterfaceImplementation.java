@@ -1,4 +1,4 @@
-package pao.services.impl;
+package pao.services.impl.exhibitions;
 
 import lombok.Getter;
 import pao.model.exhibitions.Exhibition;

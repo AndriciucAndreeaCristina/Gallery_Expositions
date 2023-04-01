@@ -1,4 +1,4 @@
-package pao.services.impl;
+package pao.services.impl.artworks;
 
 import pao.model.artworks.Artist;
 import pao.model.artworks.Artwork;

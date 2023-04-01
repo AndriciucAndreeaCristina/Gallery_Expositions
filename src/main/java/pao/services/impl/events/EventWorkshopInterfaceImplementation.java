@@ -1,7 +1,6 @@
-package pao.services.impl;
+package pao.services.impl.events;
 
-import lombok.Getter;
-import pao.model.events.Course;
+import pao.model.events.CreativeWorkshop;
 import pao.model.events.Event;
 import pao.model.events.Person;
 import pao.services.interfaces.events.EventInterface;
@@ -11,63 +10,62 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Getter
-public class EventCourseInterfaceImplementation implements EventInterface {
-    private static List<Course> coursesList = new ArrayList<>();
+public class EventWorkshopInterfaceImplementation implements EventInterface {
+    private static List<CreativeWorkshop> workshopsList = new ArrayList<>();
 
     @Override
-    public Optional<Course> getEventById(UUID id) {
-        return coursesList.stream()
-                .filter(course -> course.getId().equals(id))
+    public Optional<CreativeWorkshop> getEventById(UUID id) {
+        return workshopsList.stream()
+                .filter(ws -> ws.getId().equals(id))
                 .findAny();
     }
 
     @Override
-    public List<Course> getEventByTutor(Person tutor) {
-        return coursesList.stream()
-                .filter(course -> course.getTutor().equals(tutor))
+    public List<CreativeWorkshop> getEventByTutor(Person tutor) {
+        return workshopsList.stream()
+                .filter(ws -> ws.getTutor().equals(tutor))
                 .toList();
     }
 
     @Override
-    public List<Course> getEventByTitle(String title) {
-        return coursesList.stream()
-                .filter(course -> course.getTitle().equals(title))
+    public List<CreativeWorkshop> getEventByTitle(String title) {
+        return workshopsList.stream()
+                .filter(ws -> ws.getTitle().equals(title))
                 .toList();
     }
 
     @Override
-    public List<Course> getAllEventsFromList() {
-        return coursesList;
+    public List<CreativeWorkshop> getAllEventsFromList() {
+        return workshopsList;
     }
 
     @Override
     public void addAllEvents(List<? extends Event> eventsList) {
-        coursesList.addAll((List<Course>) eventsList);
+        workshopsList.addAll((List<CreativeWorkshop>) eventsList);
     }
 
     @Override
     public void addEvent(Event event) {
-        coursesList.add((Course) event);
+        workshopsList.add((CreativeWorkshop) event);
     }
 
     @Override
     public void removeEventById(UUID id) {
-        coursesList = coursesList.stream()
+        workshopsList = workshopsList.stream()
                 .filter(element -> !id.equals(element.getId()))
                 .toList();
     }
 
     @Override
     public void removeEventByTitle(String title) {
-        coursesList = coursesList.stream()
+        workshopsList = workshopsList.stream()
                 .filter(element -> !title.equals(element.getTitle()))
                 .toList();
     }
 
     @Override
     public void removeEventByTutor(Person tutor) {
-        coursesList = coursesList.stream()
+        workshopsList = workshopsList.stream()
                 .filter(element -> !tutor.equals(element.getTutor()))
                 .toList();
     }

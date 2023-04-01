@@ -1,4 +1,4 @@
-package pao.services.impl;
+package pao.services.impl.artworks;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
