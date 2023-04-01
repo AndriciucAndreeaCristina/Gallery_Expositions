@@ -3,10 +3,7 @@ package pao.services.impl.floorplan;
 import pao.model.floorplan.Room;
 import pao.services.interfaces.floorplan.RoomInterface;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class RoomInterfaceImplementation implements RoomInterface {
     private static HashMap<Integer, List<Room>> roomsList = new HashMap<>();
@@ -48,6 +45,9 @@ public class RoomInterfaceImplementation implements RoomInterface {
 
     @Override
     public void addRoom(Room room) {
+        if (roomsList.get(room.getFloor()) == null) {
+            roomsList.put(room.getFloor(), new ArrayList<>());
+        }
         roomsList.get(room.getFloor()).add(room);
     }
 

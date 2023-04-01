@@ -1,10 +1,10 @@
 package pao.model.floorplan;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 import pao.model.abstracts.AbstractEntity;
 
-@Builder
+@SuperBuilder
 @Getter
 public class Room extends AbstractEntity {
     private Integer floor;

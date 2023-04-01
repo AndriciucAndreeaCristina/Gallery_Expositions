@@ -6,8 +6,6 @@ import lombok.experimental.SuperBuilder;
 import pao.model.abstracts.AbstractEntity;
 import pao.model.artworks.enums.Materials;
 
-import java.util.List;
-
 @Getter
 @SuperBuilder
 @EqualsAndHashCode
@@ -16,7 +14,7 @@ public class Artwork extends AbstractEntity implements Comparable<Artwork> {
     private String title;
     private Integer yearOfCreation;
     private String description;
-    private List<Materials> materialsList;
+    private Materials material;
     @Override
     public int compareTo(Artwork o) {
         int result = o.creator.getFirstName().compareTo(this.creator.getFirstName());
