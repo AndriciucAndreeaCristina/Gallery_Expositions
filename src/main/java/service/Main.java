@@ -2,20 +2,19 @@ package service;
 
 import pao.application.Gallery;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.print("\033[H\033[2J");
-//        System.out.flush();
-//        while (true) {
-//            Gallery gallery = Gallery.getInstance();
-//            gallery.intro();
-//
-//            if ("quit".equals(scanner.next())) {
-//                break;
-//            }
-//        }
-        Gallery gallery = Gallery.getInstance();
-        gallery.intro();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            Gallery gallery = Gallery.getInstance();
+            gallery.intro(scanner);
+
+            if ("quit".equals(scanner.next())) {
+                break;
+            }
+        }
+
     }
 }

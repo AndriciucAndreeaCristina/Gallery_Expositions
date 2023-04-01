@@ -32,6 +32,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import static java.lang.System.exit;
+
 public class Gallery {
     private static Gallery INSTANCE;
     //artwork services
@@ -56,9 +58,8 @@ public class Gallery {
 
     private Gallery() {}
 
-    public void intro() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+    public void intro(Scanner scanner) {
+
         String intro = """
                                     
                                     
@@ -78,6 +79,10 @@ public class Gallery {
         createFloorplan();
         createEvents();
         createExhibitions();
+
+        Integer role = roleUsage(scanner);  //function returns 1 if the user is manager, 2 if it's not a manager, and 0 in the end, indicating an unhandled case
+
+
 
     }
 
@@ -386,4 +391,41 @@ public class Gallery {
         temporaryExhibitionService.addExhibition(temporaryExhibition);
 
     }
+
+    private Integer roleUsage(Scanner scanner) {
+        // we want to have a menu from which to choose a role
+        System.out.println("How do you want to use the application? \n");
+        System.out.println("        1 - Manager");
+        System.out.println("        2 - User");
+        System.out.print("Your choice: ");
+
+        Integer choice = scanner.nextInt();
+        if (choice == 1) {
+            System.out.println("To log in as a manager, enter your password: ");
+            System.out.println("Password: ");
+            String pass = scanner.next().toString().strip();
+
+            if (!"admin".equals(pass)) {
+                System.out.println("Sorry, you have the wrong credentials! \n");
+                System.out.println("You are logged in as a User!");
+                return 2;
+            }
+
+            else {
+                System.out.println("You are logged in as a Manager!");
+                return 1;
+            }
+        }
+        else if (choice == 2) {
+            System.out.println("You are logged in as a User!");
+            return 2;
+        }
+
+        else {
+            System.out.println("Sorry, you have entered am invalid option. Please exit and try again.");
+            exit(0);
+        }
+        return 0;
+    }
+
 }
