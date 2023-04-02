@@ -15,9 +15,5 @@ Esrc/main/java/pao/services/interfaces/floorplan/SectionInterface.java,1\b\1b24
 Msrc/main/java/pao/services/impl/floorplan/SectionInterfaceImplementation.java,f\8\f82770f66b296164a17f2d46327a92ad62b55aa2
 ‹
 [src/main/java/pao/services/impl/exhibitions/TemporaryExhibitionInterfaceImplementation.java,7\2\722b712f1bd3580350790bee5c2737b0462f3db3
-~
-Nsrc/main/java/pao/services/impl/events/EventCourseInterfaceImplementation.java,6\3\6355b6ec53a285b485b49b62934160d3ad0cc279
-€
-Psrc/main/java/pao/services/impl/events/EventWorkshopInterfaceImplementation.java,3\b\3be5938872da38bcc232549b6d01dfecb31430e5
 d
 4src/main/java/pao/model/events/enums/FormatType.java,2\8\2857620aaff81ae0237bf5c0499d01f01bceb5a5

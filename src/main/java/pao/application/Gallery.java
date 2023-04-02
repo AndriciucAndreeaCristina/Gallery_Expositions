@@ -554,61 +554,63 @@ public class Gallery {
                         System.out.print(counter + " - " + workshops.get(i));
                         counter += 1;
                     }
-                    Integer choice2 = scanner.nextInt();
-                    scanner.nextLine();
-                    System.out.println("What attribute would you like to modify?");
-                    System.out.println("        1 - Title");
-                    System.out.println("        2 - Price");
-                    Integer choice3 = scanner.nextInt();
-                    scanner.nextLine();
-                    if (choice2 <= courses.size()) {
-                        //modify a course
-                        Course course = courses.get(choice2);
-                        if (choice3.equals(1)) {
-                            System.out.println("Enter the new title: ");
-                            String title = scanner.next();
-                            scanner.nextLine();
-                            course.setTitle(title);
-                            courseService.modifyEventById(course.getId(), course);
-                            System.out.println("Successful modification!");
-                        }
-                        else if (choice3.equals(2)) {
-                            System.out.println("Enter the new price: ");
-                            Float price = scanner.nextFloat();
-                            scanner.nextLine();
-                            course.setPrice(price);
-                            courseService.modifyEventById(course.getId(), course);
-                            System.out.println("Successful modification!");
-                        }
-                        else {
-                            System.out.println("Invalid option!");
-                            exit(0);
-                        }
-                    }
-                    else {
-                        //modify a creative workshop
-                        CreativeWorkshop workshop = workshops.get(choice2 - courses.size());
-                        if (choice3.equals(1)) {
-                            System.out.println("Enter the new title: ");
-                            String title = scanner.next();
-                            scanner.nextLine();
-                            workshop.setTitle(title);
-                            workshopService.modifyEventById(workshop.getId(), workshop);
-                            System.out.println("Successful modification!");
-                        }
-                        else if (choice3.equals(2)) {
-                            System.out.println("Enter the new price: ");
-                            Float price = scanner.nextFloat();
-                            scanner.nextLine();
-                            workshop.setPrice(price);
-                            workshopService.modifyEventById(workshop.getId(), workshop);
-                            System.out.println("Successful modification!");
-                        }
-                        else {
-                            System.out.println("Invalid option!");
-                            exit(0);
-                        }
-                    }
+                    System.out.println("Work in progress...");
+                    System.out.println("Try something else meanwhile!");
+//                    Integer choice2 = scanner.nextInt();
+//                    scanner.nextLine();
+//                    System.out.println("What attribute would you like to modify?");
+//                    System.out.println("        1 - Title");
+//                    System.out.println("        2 - Price");
+//                    Integer choice3 = scanner.nextInt();
+//                    scanner.nextLine();
+//                    if (choice2 <= courses.size()) {
+//                        //modify a course
+//                        Course course = courses.get(choice2-1);
+//                        if (choice3.equals(1)) {
+//                            System.out.println("Enter the new title: ");
+//                            String title = scanner.next();
+//                            scanner.nextLine();
+//                            course.setTitle(title);
+//                            courseService.modifyEventById(course.getId(), course);
+//                            System.out.println("Successful modification!");
+//                        }
+//                        else if (choice3.equals(2)) {
+//                            System.out.println("Enter the new price: ");
+//                            Float price = scanner.nextFloat();
+//                            scanner.nextLine();
+//                            course.setPrice(price);
+//                            courseService.modifyEventById(course.getId(), course);
+//                            System.out.println("Successful modification!");
+//                        }
+//                        else {
+//                            System.out.println("Invalid option!");
+//                            exit(0);
+//                        }
+//                    }
+//                    else {
+//                        //modify a creative workshop
+//                        CreativeWorkshop workshop = workshops.get(choice2 - courses.size()-1);
+//                        if (choice3.equals(1)) {
+//                            System.out.println("Enter the new title: ");
+//                            String title = scanner.next();
+//                            scanner.nextLine();
+//                            workshop.setTitle(title);
+//                            workshopService.modifyEventById(workshop.getId(), workshop);
+//                            System.out.println("Successful modification!");
+//                        }
+//                        else if (choice3.equals(2)) {
+//                            System.out.println("Enter the new price: ");
+//                            Float price = scanner.nextFloat();
+//                            scanner.nextLine();
+//                            workshop.setPrice(price);
+//                            workshopService.modifyEventById(workshop.getId(), workshop);
+//                            System.out.println("Successful modification!");
+//                        }
+//                        else {
+//                            System.out.println("Invalid option!");
+//                            exit(0);
+//                        }
+//                    }
                     break;
                 }
                 case 4: {
@@ -626,11 +628,11 @@ public class Gallery {
                     System.out.println("Choose one from the available artworks: ");
                     for (int i = 0; i < existentArtworks.size(); i++)
                     {
-                        System.out.println("\t" + i+1 + " - " + existentArtworks.get(i).getTitle());
+                        System.out.println("\t" + (i+1) + " - " + existentArtworks.get(i).getTitle().toString());
                     }
                     Integer choice4 = scanner.nextInt();
                     scanner.nextLine();
-                    artworkList.add(existentArtworks.get(choice4));
+                    artworkList.add(existentArtworks.get(choice4-1));
                     Room room = roomService.getRoomsByFloor(0).get(7);
                     TemporaryExhibition tempExp = TemporaryExhibition.builder()
                             .id(UUID.randomUUID())
@@ -642,6 +644,7 @@ public class Gallery {
                             .room(room)
                             .build();
                     temporaryExhibitionService.addExhibition(tempExp);
+                    System.out.println("Successful operartion!");
                     break;
                 }
                 default: {
@@ -649,11 +652,13 @@ public class Gallery {
                     exit(0);
                 }
         }
+        System.out.println("If you want to perform another action, rerun the program");
     }
 
     private void userFunctionalities(Scanner scanner) {
             System.out.println("What action would you like to perform?");
-        }
+            
+    }
 
 
 }

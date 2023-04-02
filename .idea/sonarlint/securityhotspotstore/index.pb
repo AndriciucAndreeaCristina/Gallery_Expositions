@@ -9,10 +9,6 @@ Dsrc/main/java/pao/services/interfaces/artworks/ArtworkInterface.java,c\f\cf670
 Lsrc/main/java/pao/services/impl/artworks/ArtworkInterfaceImplementation.java,5\d\5d550bfc4e3c1e4620bfbbe7c986f61d62129e78
 u
 Esrc/main/java/pao/services/interfaces/floorplan/SectionInterface.java,1\b\1b2428c007a75c5d128411ab480146b31ced63d9
-~
-Nsrc/main/java/pao/services/impl/events/EventCourseInterfaceImplementation.java,6\3\6355b6ec53a285b485b49b62934160d3ad0cc279
-€
-Psrc/main/java/pao/services/impl/events/EventWorkshopInterfaceImplementation.java,3\b\3be5938872da38bcc232549b6d01dfecb31430e5
 ‹
 [src/main/java/pao/services/impl/exhibitions/PermanentExhibitionInterfaceImplementation.java,0\1\01ff14b523b83dceae0804584ff0701691ddafa0
 ‹
