@@ -9,13 +9,5 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Gallery gallery = Gallery.getInstance();
         gallery.intro(scanner);
-//        while (true) {
-//
-//
-//            if ("quit".equals(scanner.next())) {
-//                break;
-//            }
-//        }
-
     }
 }
