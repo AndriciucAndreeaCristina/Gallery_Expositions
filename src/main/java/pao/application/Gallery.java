@@ -82,7 +82,18 @@ public class Gallery {
 
         Integer role = roleUsage(scanner);  //function returns 1 if the user is manager, 2 if it's not a manager, and 0 in the end, indicating an unhandled case
 
+        if (role == 1) {
+            managerFunctionalities(scanner);
+        }
 
+        else if (role == 2) {
+            userFunctionalities(scanner);
+        }
+
+        else if (role == 0) {
+            System.out.println("Something went wrong! Please try again!");
+            exit(0);
+        }
 
     }
 
@@ -427,5 +438,128 @@ public class Gallery {
         }
         return 0;
     }
+
+    private void managerFunctionalities(Scanner scanner) {
+        System.out.println("What action would you like to perform?");
+        System.out.println("        1 - Add an artist");
+        System.out.println("        2 - Add an artwork");
+        System.out.println("        3 - Add an event");
+        System.out.println("        4 - Modify an event");
+        System.out.println("        5 - Add an exhibition");
+
+        Integer choice = scanner.nextInt();
+        while (choice < 1 || choice > 5) {
+            System.out.println("You have chosen an invalid option. Please try again!");
+            choice = scanner.nextInt();
+            scanner.nextLine();
+        }
+            switch (choice) {
+                case 1: {
+                    // add an artist
+                    Artist artist;
+                    System.out.println("Enter all the fields: ");
+                    String firstName, lastName, description;
+                    Integer year, month, day, movement;
+                    System.out.println("First Name: ");
+                    firstName = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Last Name: ");
+                    lastName = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Description: ");
+                    description = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Birthdate (year month day): ");
+                    year = scanner.nextInt();
+                    month = scanner.nextInt();
+                    day = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Movement: ");
+                    System.out.println("    1 - COMPUTER_ART");
+                    System.out.println("    2 - GRAFFITI_ART");
+                    System.out.println("    3 - HYPERREALISM");
+                    System.out.println("    4 - INSTALLATION_ART");
+                    System.out.println("    5 - MINIMALISM");
+                    System.out.println("    6 - PERFORMANCE_ART");
+                    System.out.println("    7 - POP_ART");
+                    System.out.println("    8 - POSTMODERNISM");
+                    System.out.println("    9 - TRANSAVANTGARDE");
+                    System.out.println("    10 - VIDEO_INSTALLATION");
+
+                    movement = scanner.nextInt();
+                    scanner.nextLine();
+                    artist = Artist.builder()
+                            .id(UUID.randomUUID())
+                            .creationDate(LocalDate.now())
+                            .firstName(firstName)
+                            .lastName(lastName)
+                            .birthDate(LocalDate.of(year, month, day))
+                            .description(description)
+                            .movement(SectionsType.values()[movement-1])
+                            .build();
+                    artistService.addArtist(artist);
+                    //System.out.println(artistService.getAllArtistsFromList());
+                    break;
+                }
+                case 2: {
+                    //add an artwork
+                    Artwork artwork;
+                    Artist creator;
+                    String title, description, firstName, lastName;
+                    Integer year, typeId;
+
+                    System.out.println("Enter all the fields: ");
+                    System.out.println("Creator(FirstName): ");
+                    firstName = scanner.next();
+                    scanner.nextLine();
+                    creator = artistService.getArtistByFirstName(firstName).orElse(null);
+                    System.out.println("Title: ");
+                    title = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Description: ");
+                    description = scanner.next();
+                    scanner.nextLine();
+                    System.out.print("Year of Creation: ");
+                    year = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("Materials (number in range 1-31): ");
+                    typeId = scanner.nextInt();
+                    scanner.nextLine();
+
+                    artwork = Artwork.builder()
+                            .id(UUID.randomUUID())
+                            .creationDate(LocalDate.now())
+                            .creator(creator)
+                            .title(title)
+                            .yearOfCreation(year)
+                            .description(description)
+                            .material(Materials.values()[typeId-1])
+                            .build();
+                    artworkService.addArtwork(artwork);
+                    //System.out.println(artworkService.getArtworkByTitle(title));
+                    break;
+                }
+                case 3: {
+                    //add an event
+                    break;
+                }
+                case 4: {
+                    //modify an event
+                    break;
+                }
+                case 5: {
+                    //add an exhibition
+                    break;
+                }
+                default: {
+
+                }
+        }
+    }
+
+    private void userFunctionalities(Scanner scanner) {
+            System.out.println("What action would you like to perform?");
+        }
+
 
 }

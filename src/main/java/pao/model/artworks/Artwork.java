@@ -32,4 +32,14 @@ public class Artwork extends AbstractEntity implements Comparable<Artwork> {
         }
         return result;
     }
+
+    @Override
+    public String toString() {
+        String str = "\t Title: " + this.title + "\n"
+                    + "\t Creator: " + this.creator.getFirstName() + " " + this.creator.getLastName() + "\n"
+                    + "\t Description: " + this.description + "\n"
+                    + "\t Year of Creation: " + this.yearOfCreation + "\n"
+                    + "\t Material: " + this.getMaterial().toString() + "\n\n";
+        return str;
+    }
 }

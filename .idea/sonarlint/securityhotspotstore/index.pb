@@ -23,7 +23,5 @@ Psrc/main/java/pao/services/impl/events/EventWorkshopInterfaceImplementation.jav
 [src/main/java/pao/services/impl/exhibitions/TemporaryExhibitionInterfaceImplementation.java,7\2\722b712f1bd3580350790bee5c2737b0462f3db3
 }
 Msrc/main/java/pao/services/impl/floorplan/SectionInterfaceImplementation.java,f\8\f82770f66b296164a17f2d46327a92ad62b55aa2
-e
-5src/main/java/pao/model/artworks/enums/Materials.java,5\5\555abfaab898fe9a8a5a493a64c3bb26c4d443ae
 d
 4src/main/java/pao/model/events/enums/FormatType.java,2\8\2857620aaff81ae0237bf5c0499d01f01bceb5a5

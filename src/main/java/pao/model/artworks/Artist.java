@@ -17,7 +17,7 @@ public class Artist extends AbstractPerson {
                 "\n\t Last Name: " + this.getLastName() +
                 "\n\t Birth date: " + this.getBirthDate() +
                 "\n\t Movement: " + this.getMovement() +
-                "\n\t Description: " + this.getDescription();
+                "\n\t Description: " + this.getDescription() + "\n\n";
         return str;
     }
 
