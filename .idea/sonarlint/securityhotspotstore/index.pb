@@ -7,10 +7,6 @@ t
 Dsrc/main/java/pao/services/interfaces/artworks/ArtworkInterface.java,c\f\cf670197c33720f3791855e9dcbf46edc7aa69b5
 |
 Lsrc/main/java/pao/services/impl/artworks/ArtworkInterfaceImplementation.java,5\d\5d550bfc4e3c1e4620bfbbe7c986f61d62129e78
-z
-Jsrc/main/java/pao/services/interfaces/exhibitions/ExhibitionInterface.java,2\b\2b92f02db580129e0d5ea8a1c75b3a9a712a47fe
-p
-@src/main/java/pao/services/interfaces/events/EventInterface.java,2\5\25bf6a1dc13250fe69d93a5c1e6f95dfd772c268
 u
 Esrc/main/java/pao/services/interfaces/floorplan/SectionInterface.java,1\b\1b2428c007a75c5d128411ab480146b31ced63d9
 ~

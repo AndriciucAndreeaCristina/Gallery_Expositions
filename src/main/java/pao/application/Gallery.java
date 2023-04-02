@@ -443,12 +443,11 @@ public class Gallery {
         System.out.println("What action would you like to perform?");
         System.out.println("        1 - Add an artist");
         System.out.println("        2 - Add an artwork");
-        System.out.println("        3 - Add an event");
-        System.out.println("        4 - Modify an event");
-        System.out.println("        5 - Add an exhibition");
+        System.out.println("        3 - Modify an event");
+        System.out.println("        4 - Add an exhibition");
 
         Integer choice = scanner.nextInt();
-        while (choice < 1 || choice > 5) {
+        while (choice < 1 || choice > 4) {
             System.out.println("You have chosen an invalid option. Please try again!");
             choice = scanner.nextInt();
             scanner.nextLine();
@@ -540,19 +539,114 @@ public class Gallery {
                     break;
                 }
                 case 3: {
-                    //add an event
+                    //modify an event
+                    System.out.println("Choose the event to be modified: ");
+                    List<Course> courses = (List<Course>) courseService.getAllEventsFromList();
+                    System.out.println("    Courses: ");
+                    Integer counter = 1;
+                    for (int i = 0; i < courses.size(); i++) {
+                        System.out.println( counter + " - " + courses.get(i));
+                        counter += 1;
+                    }
+                    List<CreativeWorkshop> workshops = (List<CreativeWorkshop>) workshopService.getAllEventsFromList();
+                    System.out.println("    Creative workshops: ");
+                    for (int i = 0; i < workshops.size(); i++) {
+                        System.out.print(counter + " - " + workshops.get(i));
+                        counter += 1;
+                    }
+                    Integer choice2 = scanner.nextInt();
+                    scanner.nextLine();
+                    System.out.println("What attribute would you like to modify?");
+                    System.out.println("        1 - Title");
+                    System.out.println("        2 - Price");
+                    Integer choice3 = scanner.nextInt();
+                    scanner.nextLine();
+                    if (choice2 <= courses.size()) {
+                        //modify a course
+                        Course course = courses.get(choice2);
+                        if (choice3.equals(1)) {
+                            System.out.println("Enter the new title: ");
+                            String title = scanner.next();
+                            scanner.nextLine();
+                            course.setTitle(title);
+                            courseService.modifyEventById(course.getId(), course);
+                            System.out.println("Successful modification!");
+                        }
+                        else if (choice3.equals(2)) {
+                            System.out.println("Enter the new price: ");
+                            Float price = scanner.nextFloat();
+                            scanner.nextLine();
+                            course.setPrice(price);
+                            courseService.modifyEventById(course.getId(), course);
+                            System.out.println("Successful modification!");
+                        }
+                        else {
+                            System.out.println("Invalid option!");
+                            exit(0);
+                        }
+                    }
+                    else {
+                        //modify a creative workshop
+                        CreativeWorkshop workshop = workshops.get(choice2 - courses.size());
+                        if (choice3.equals(1)) {
+                            System.out.println("Enter the new title: ");
+                            String title = scanner.next();
+                            scanner.nextLine();
+                            workshop.setTitle(title);
+                            workshopService.modifyEventById(workshop.getId(), workshop);
+                            System.out.println("Successful modification!");
+                        }
+                        else if (choice3.equals(2)) {
+                            System.out.println("Enter the new price: ");
+                            Float price = scanner.nextFloat();
+                            scanner.nextLine();
+                            workshop.setPrice(price);
+                            workshopService.modifyEventById(workshop.getId(), workshop);
+                            System.out.println("Successful modification!");
+                        }
+                        else {
+                            System.out.println("Invalid option!");
+                            exit(0);
+                        }
+                    }
                     break;
                 }
                 case 4: {
-                    //modify an event
-                    break;
-                }
-                case 5: {
                     //add an exhibition
+                    String title, description;
+                    List<Artwork> artworkList = new ArrayList<>();
+                    Artwork artwork;
+                    List<Artwork> existentArtworks = artworkService.getAllArtworksFromSet().stream().toList();
+                    System.out.println("Title: ");
+                    title = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Description: ");
+                    description = scanner.next();
+                    scanner.nextLine();
+                    System.out.println("Choose one from the available artworks: ");
+                    for (int i = 0; i < existentArtworks.size(); i++)
+                    {
+                        System.out.println("\t" + i+1 + " - " + existentArtworks.get(i).getTitle());
+                    }
+                    Integer choice4 = scanner.nextInt();
+                    scanner.nextLine();
+                    artworkList.add(existentArtworks.get(choice4));
+                    Room room = roomService.getRoomsByFloor(0).get(7);
+                    TemporaryExhibition tempExp = TemporaryExhibition.builder()
+                            .id(UUID.randomUUID())
+                            .title(title)
+                            .description(description)
+                            .artworksList(artworkList)
+                            .startDate(LocalDate.now())
+                            .endDate(LocalDate.now())
+                            .room(room)
+                            .build();
+                    temporaryExhibitionService.addExhibition(tempExp);
                     break;
                 }
                 default: {
-
+                    System.out.println("Invalid option!");
+                    exit(0);
                 }
         }
     }
