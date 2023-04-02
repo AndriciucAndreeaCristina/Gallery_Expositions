@@ -8,6 +8,7 @@ import pao.model.events.CreativeWorkshop;
 import pao.model.events.Person;
 import pao.model.events.enums.FormatType;
 import pao.model.events.enums.MaterialsCreativeWorkshop;
+import pao.model.exhibitions.Exhibition;
 import pao.model.exhibitions.PermanentExhibition;
 import pao.model.exhibitions.TemporaryExhibition;
 import pao.model.floorplan.Room;
@@ -656,9 +657,58 @@ public class Gallery {
     }
 
     private void userFunctionalities(Scanner scanner) {
-            System.out.println("What action would you like to perform?");
-            
+        System.out.println("What action would you like to perform?");
+        System.out.println("        1 - Register for a course");
+        System.out.println("        2 - Register for a creative workshop");
+        System.out.println("        3 - Register for a temporary exhibition");
+
+        Integer choice = scanner.nextInt();
+        scanner.nextLine();
+        List<Object> eventsToAttend = new ArrayList<>();
+        switch (choice) {
+            case 1: {
+                List<Course> courses = (List<Course>) courseService.getAllEventsFromList();
+                System.out.println("Choose a course: ");
+                System.out.println("    Courses: ");
+                for (int i = 0; i < courses.size(); i++) {
+                    System.out.println( (i+1) + " - " + courses.get(i));
+                }
+                Integer choice2 = scanner.nextInt();
+                scanner.nextLine();
+                eventsToAttend.add(courses.get(choice2-1));
+                break;
+            }
+            case 2 : {
+                List<CreativeWorkshop> workshops = (List<CreativeWorkshop>) workshopService.getAllEventsFromList();
+                System.out.println("    Creative workshops: ");
+                for (int i = 0; i < workshops.size(); i++) {
+                    System.out.print((i+1) + " - " + workshops.get(i));
+                }
+                Integer choice2 = scanner.nextInt();
+                scanner.nextLine();
+                eventsToAttend.add(workshops.get(choice2-1));
+                break;
+            }
+            case 3 : {
+                List<? extends Exhibition> tempExpAll = temporaryExhibitionService.getAllExhibitionsFromList().stream().toList();
+                System.out.println("    Temporary Exhibitions");
+                for (int i = 0; i < tempExpAll.size(); i++) {
+                    System.out.println((i+1) + " - " +tempExpAll.get(i).getTitle());
+                }
+                Integer choice2 = scanner.nextInt();
+                scanner.nextLine();
+                eventsToAttend.add(tempExpAll.get(choice2-1));
+                break;
+            }
+            default: {
+                System.out.println("Invalid option!");
+                exit(0);
+                break;
+            }
+        }
+        System.out.println("You have chosen to attend to the following events: ");
+        for (int i = 0; i < eventsToAttend.size(); i++) {
+            System.out.println(eventsToAttend.get(i));
+        }
     }
-
-
 }
