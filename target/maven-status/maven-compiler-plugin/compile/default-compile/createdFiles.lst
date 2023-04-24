@@ -10,6 +10,7 @@ pao\services\impl\artworks\ArtworkInterfaceImplementation.class
 pao\model\floorplan\Room.class
 pao\model\exhibitions\PermanentExhibition.class
 pao\services\impl\exhibitions\PermanentExhibitionInterfaceImplementation.class
+pao\model\floorplan\Section$SectionBuilderImpl.class
 pao\model\exhibitions\TemporaryExhibition$TemporaryExhibitionBuilderImpl.class
 pao\model\events\Person.class
 pao\model\exhibitions\Exhibition$ExhibitionBuilderImpl.class
@@ -47,6 +48,7 @@ pao\services\impl\floorplan\SectionInterfaceImplementation.class
 pao\model\floorplan\Room$RoomBuilder.class
 pao\model\events\Course.class
 pao\model\artworks\Artist$ArtistBuilder.class
+pao\model\floorplan\Room$RoomBuilderImpl.class
 pao\model\floorplan\Section$SectionBuilder.class
 pao\services\interfaces\exhibitions\ExhibitionInterface.class
 pao\model\artworks\enums\Materials.class
