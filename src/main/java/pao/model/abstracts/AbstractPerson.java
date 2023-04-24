@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @ToString
 @EqualsAndHashCode
+@NonNull
 public abstract class AbstractPerson extends AbstractEntity{
    private String firstName;
    private String lastName;

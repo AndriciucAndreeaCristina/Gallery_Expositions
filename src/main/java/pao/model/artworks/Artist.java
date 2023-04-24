@@ -1,6 +1,8 @@
 package pao.model.artworks;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.experimental.SuperBuilder;
 import pao.model.abstracts.AbstractPerson;
 import pao.model.floorplan.enums.SectionsType;
@@ -8,6 +10,8 @@ import pao.model.floorplan.enums.SectionsType;
 
 @SuperBuilder
 @Getter
+@NoArgsConstructor
+@NonNull
 public class Artist extends AbstractPerson {
     private SectionsType movement;
 
