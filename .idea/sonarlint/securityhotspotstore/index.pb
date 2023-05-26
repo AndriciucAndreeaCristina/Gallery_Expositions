@@ -1,6 +1,7 @@
 
 G
 Gallery_Expositions.iml,5\e\5e16aec25ac398546fab4e4e51d2fe9be588fd36
+<<<<<<< Updated upstream
 s
 Csrc/main/java/pao/services/interfaces/artworks/ArtistInterface.java,0\a\0a53871a12073ae1611aeafb761d5b7a406509ff
 t
@@ -9,6 +10,26 @@ Dsrc/main/java/pao/services/interfaces/artworks/ArtworkInterface.java,c\f\cf670
 Lsrc/main/java/pao/services/impl/artworks/ArtworkInterfaceImplementation.java,5\d\5d550bfc4e3c1e4620bfbbe7c986f61d62129e78
 u
 Esrc/main/java/pao/services/interfaces/floorplan/SectionInterface.java,1\b\1b2428c007a75c5d128411ab480146b31ced63d9
+=======
+d
+4src/main/java/pao/model/events/enums/FormatType.java,2\8\2857620aaff81ae0237bf5c0499d01f01bceb5a5
+s
+Csrc/main/java/pao/model/events/enums/MaterialsCreativeWorkshop.java,0\2\02cbaec6218876eb4cddf6db90ee0d668b1cb05e
+Y
+)src/main/java/pao/model/events/Event.java,9\5\952d6ec99d3ce728d78719827e2eeb120af4623f
+d
+4src/main/java/pao/model/events/CreativeWorkshop.java,6\0\605ae4568df6ea6319f3db9a2c60efd44ea4f194
+l
+<src/main/java/pao/model/exhibitions/TemporaryExhibition.java,4\4\4465d88177ac74e9a74ee3a7d39c516e7795f7f0
+i
+9src/main/java/pao/model/floorplan/enums/SectionsType.java,c\f\cf2b47ad9905d0e679754a987674325723bdc5d0
+|
+Lsrc/main/java/pao/services/impl/artworks/ArtworkInterfaceImplementation.java,5\d\5d550bfc4e3c1e4620bfbbe7c986f61d62129e78
+~
+Nsrc/main/java/pao/services/impl/events/EventCourseInterfaceImplementation.java,6\3\6355b6ec53a285b485b49b62934160d3ad0cc279
+€
+Psrc/main/java/pao/services/impl/events/EventWorkshopInterfaceImplementation.java,3\b\3be5938872da38bcc232549b6d01dfecb31430e5
+>>>>>>> Stashed changes
 ‹
 [src/main/java/pao/services/impl/exhibitions/PermanentExhibitionInterfaceImplementation.java,0\1\01ff14b523b83dceae0804584ff0701691ddafa0
 ‹

@@ -2,12 +2,14 @@ package pao.model.artworks.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import pao.model.events.enums.MaterialsCreativeWorkshop;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public enum Materials {
+public enum Materials{
     ACRYLIC_ON_CANVAS ("acrylic_on_canvas", 0),
     ACRYLIC_ON_PAPER ("acrylic_on_paper", 1),
     ACRYLIC_ON_WOOD ("acrylic_on_wood", 2),
