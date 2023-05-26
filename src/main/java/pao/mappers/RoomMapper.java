@@ -30,7 +30,7 @@ public class RoomMapper {
         }
     }
 
-    public List<Room> mapToRoomClassList(ResultSet resultSet) throws SQLException {
+    public static List<Room> mapToRoomClassList(ResultSet resultSet) throws SQLException {
         List<Room> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

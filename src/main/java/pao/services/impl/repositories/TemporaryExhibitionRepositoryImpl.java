@@ -1,10 +1,9 @@
 package pao.services.impl.repositories;
 
 import pao.config.DatabaseConfiguration;
-import pao.mappers.SectionMapper;
-import pao.model.floorplan.Section;
-import pao.model.floorplan.enums.SectionsType;
-import pao.services.interfaces.repositories.SectionRepository;
+import pao.mappers.TemporaryExhibitionMapper;
+import pao.model.exhibitions.TemporaryExhibition;
+import pao.services.interfaces.repositories.TemporaryExhibitionRepository;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class SectionRepositoryImpl implements SectionRepository {
-    private static final SectionMapper sectionMapper = SectionMapper.getInstance();
+public class TemporaryExhibitionRepositoryImpl implements TemporaryExhibitionRepository {
+    private static final TemporaryExhibitionMapper temporaryExhibitionMapper = TemporaryExhibitionMapper.getInstance();
     @Override
-    public Optional<Section> getSectionById(UUID id) {
-        String selectSql = "SELECT * FROM section WHERE id = ?";
+    public Optional<TemporaryExhibition> getTExhibitionById(UUID id) {
+        String selectSql = "SELECT * FROM temporary_exhibition WHERE id = ?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
@@ -24,61 +23,62 @@ public class SectionRepositoryImpl implements SectionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return sectionMapper.mapToSectionClass(resultSet);
+                return temporaryExhibitionMapper.mapToTemporaryExhibitionClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return Optional.empty();
     }
 
     @Override
-    public List<Section> getSectionsByType(SectionsType type) {
-        List<Section> sections = new ArrayList<>();
-        String selectSql = "SELECT * FROM section WHERE type = ?";
+    public List<TemporaryExhibition> getTExhibitionByTitle(String title) {
+        List<TemporaryExhibition> exhibitions = new ArrayList<>();
+        String selectSql = "SELECT * FROM temporary_exhibition WHERE title = ?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
-            preparedStatement.setString(1, type.toString());
+            preparedStatement.setString(1, title);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                sections = sectionMapper.mapToSectionClassList(resultSet);
+            while (resultSet.next()) {
+                exhibitions = temporaryExhibitionMapper.mapToTemporaryExhibitionClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return sections;
+        return exhibitions;
     }
 
     @Override
-    public List<Section> getAllSections() {
-        List<Section> sections = new ArrayList<>();
-        String selectSql = "SELECT * FROM section";
+    public List<TemporaryExhibition> getAllTExhibitionsFromList() {
+        List<TemporaryExhibition> exhibitions = new ArrayList<>();
+        String selectSql = "SELECT * FROM temporary_exhibition";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(selectSql)) {
-            if (resultSet.next()) {
-                sections = sectionMapper.mapToSectionClassList(resultSet);
+
+            while (resultSet.next()) {
+                exhibitions = temporaryExhibitionMapper.mapToTemporaryExhibitionClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return sections;
+        return exhibitions;
     }
 
     @Override
-    public void addSection(Section section) {
-        String insertSql = "INSERT INTO section (id, type) VALUES (?, ?)";
+    public void addTExhibition(TemporaryExhibition exhibition) {
+        String insertSql = "INSERT INTO temporary_exhibition (id, title, description) VALUES (?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
-            preparedStatement.setString(1, section.getId().toString());
-            preparedStatement.setString(2, section.getType().toString());
+            preparedStatement.setString(1, exhibition.getId().toString());
+            preparedStatement.setString(2, exhibition.getTitle());
+            preparedStatement.setString(3, exhibition.getDescription());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -87,13 +87,12 @@ public class SectionRepositoryImpl implements SectionRepository {
     }
 
     @Override
-    public void removeSectionById(UUID id) {
-        String deleteSql = "DELETE FROM section WHERE id = ?";
+    public void removeTExhibitionById(UUID id) {
+        String deleteSql = "DELETE FROM temporary_exhibition WHERE id = ?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(deleteSql)) {
             preparedStatement.setString(1, id.toString());
-
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -101,13 +100,14 @@ public class SectionRepositoryImpl implements SectionRepository {
     }
 
     @Override
-    public void modifySectionById(UUID id, Section newSection) {
-        String updateSql = "UPDATE section SET  type = ? WHERE id = ?";
+    public void modifyTExhibitionById(UUID id, TemporaryExhibition newExhibition) {
+        String updateSql = "UPDATE temporary_exhibition SET title = ?, description = ? WHERE id = ?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(updateSql)) {
-            preparedStatement.setString(1, newSection.getType().toString());
-            preparedStatement.setString(2, id.toString());
+            preparedStatement.setString(1, newExhibition.getTitle());
+            preparedStatement.setString(2, newExhibition.getDescription());
+            preparedStatement.setString(3, id.toString());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

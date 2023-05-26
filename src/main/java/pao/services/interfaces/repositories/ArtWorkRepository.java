@@ -12,7 +12,6 @@ public interface ArtWorkRepository {
     List<Artwork> getArtworkByCreator(Artist creator);
     Optional<Artwork> getArtworkByTitle(String title);
     List<Artwork> getAllArtworksFromSet();
-    void addAllArtworks(List artworksList);
     void addArtwork(Artwork artwork);
     void removeArtworkById(UUID id);
     void removeArtworkByTitle(String title);

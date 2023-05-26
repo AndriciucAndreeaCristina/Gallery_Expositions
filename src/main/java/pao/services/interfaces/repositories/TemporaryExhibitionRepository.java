@@ -10,9 +10,7 @@ public interface TemporaryExhibitionRepository {
     Optional<TemporaryExhibition> getTExhibitionById(UUID id);
     List<TemporaryExhibition> getTExhibitionByTitle(String title);
     List<TemporaryExhibition> getAllTExhibitionsFromList();
-    void addAllTExhibitions(List<TemporaryExhibition> exhibitionsList);
     void addTExhibition(TemporaryExhibition exhibition);
     void removeTExhibitionById(UUID id);
-    void removeTExhibitionByTitle(String title);
     void modifyTExhibitionById(UUID id, TemporaryExhibition newExhibition);
 }

@@ -12,9 +12,7 @@ public interface SectionRepository {
 
     List<Section> getSectionsByType(SectionsType type);
 
-    List<Section> getAllRooms();
-
-    void addAllSections(List<Section> sections);
+    List<Section> getAllSections();
 
     void addSection(Section section);
 

@@ -1,7 +1,6 @@
 package pao.services.interfaces.repositories;
 
 import pao.model.events.Course;
-import pao.model.events.Event;
 import pao.model.events.Person;
 
 import java.util.List;
@@ -13,7 +12,6 @@ public interface CourseRepository {
     List<Course> getCourseByTutor(Person tutor);
     List<Course> getCourseByTitle(String title);
     List<Course> getAllCoursesFromList();
-    void addAllCourses(List<Event> eventsList);
     void addCourse(Course event);
     void removeCourseById(UUID id);
     void removeCourseByTitle(String title);
