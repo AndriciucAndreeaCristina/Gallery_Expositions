@@ -1,7 +1,7 @@
 package pao.mappers;
 
 import pao.model.events.CreativeWorkshop;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 import pao.model.events.enums.FormatType;
 import pao.model.events.enums.MaterialsCreativeWorkshop;
 

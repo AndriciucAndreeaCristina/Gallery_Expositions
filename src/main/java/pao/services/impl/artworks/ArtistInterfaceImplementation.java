@@ -2,7 +2,7 @@ package pao.services.impl.artworks;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.services.interfaces.artworks.ArtistInterface;
 
 import java.util.*;

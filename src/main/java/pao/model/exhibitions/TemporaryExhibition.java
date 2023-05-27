@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @SuperBuilder
 @Getter
-public class TemporaryExhibition extends Exhibition implements Comparable<TemporaryExhibition> {
+public final class TemporaryExhibition extends Exhibition implements Comparable<TemporaryExhibition> {
     private LocalDate startDate;
     private LocalDate endDate;
     private Room room;

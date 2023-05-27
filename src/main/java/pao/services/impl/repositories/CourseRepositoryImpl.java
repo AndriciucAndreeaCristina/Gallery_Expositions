@@ -3,7 +3,7 @@ package pao.services.impl.repositories;
 import pao.config.DatabaseConfiguration;
 import pao.mappers.CourseMapper;
 import pao.model.events.Course;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 import pao.services.interfaces.repositories.CourseRepository;
 
 import java.sql.Connection;

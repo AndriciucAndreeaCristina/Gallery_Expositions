@@ -6,7 +6,7 @@ import pao.model.floorplan.Section;
 
 @SuperBuilder
 @Getter
-public class PermanentExhibition extends Exhibition implements Comparable<PermanentExhibition> {
+public final class PermanentExhibition extends Exhibition implements Comparable<PermanentExhibition> {
     private Section section;
 
     @Override

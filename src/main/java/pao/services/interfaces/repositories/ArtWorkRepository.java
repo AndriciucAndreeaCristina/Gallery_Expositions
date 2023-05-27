@@ -1,6 +1,6 @@
 package pao.services.interfaces.repositories;
 
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.model.artworks.Artwork;
 
 import java.util.List;

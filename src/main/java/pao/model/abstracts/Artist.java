@@ -1,4 +1,4 @@
-package pao.model.artworks;
+package pao.model.abstracts;
 
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -8,7 +8,7 @@ import pao.model.floorplan.enums.SectionsType;
 
 @SuperBuilder
 @Getter
-public class Artist extends AbstractPerson {
+public non-sealed class Artist extends AbstractPerson {
     private SectionsType movement;
 
     @Override

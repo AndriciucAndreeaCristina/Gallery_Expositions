@@ -1,27 +1,30 @@
 package pao.services.impl.repositories;
 
+import pao.application.csv.CsvWriter;
 import pao.config.DatabaseConfiguration;
 import pao.mappers.ArtistMapper;
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.services.interfaces.repositories.ArtistRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public class ArtistRepositoryImpl implements ArtistRepository {
     private static final ArtistMapper artistMapper = ArtistMapper.getInstance();
+    private static CsvWriter csvWriter = CsvWriter.getInstance();
     @Override
     public List<Artist> getArtistsByMovement(String movement) {
         return null;
     }
 
     @Override
-    public Optional<Artist> getArtistByFirstName(String firstName) {
+    public Optional<Artist> getArtistByFirstName(String firstName) throws Exception {
 
         String selectSql = "SELECT * FROM abstractperson, artist WHERE first_name=? AND abstractperson.id = artist.id";
 
@@ -32,6 +35,9 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             return artistMapper.mapToArtistClass(resultSet);
         } catch (SQLException e) {
+            List<String[]> lines = new ArrayList<>();
+            lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});
+            csvWriter.executeLineByLine(lines);
             e.printStackTrace();
         }
 
@@ -39,7 +45,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
     }
 
     @Override
-    public Optional<Object> getArtistByLastName(String lastName) {
+    public Optional<Object> getArtistByLastName(String lastName) throws Exception {
 
         String selectSql = "SELECT * FROM artist WHERE last_name=?";
 
@@ -50,6 +56,9 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             return Optional.ofNullable(artistMapper.mapToArtistClassList(resultSet));
         } catch (SQLException e) {
+            List<String[]> lines = new ArrayList<>();
+            lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});
+            csvWriter.executeLineByLine(lines);
             e.printStackTrace();
         }
 
@@ -57,7 +66,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
     }
 
     @Override
-    public Optional<Artist> getArtistById(UUID id) {
+    public Optional<Artist> getArtistById(UUID id) throws Exception {
 
         String selectSql = "SELECT * FROM artist WHERE id=?";
 
@@ -68,6 +77,9 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
             return artistMapper.mapToArtistClass(resultSet);
         } catch (SQLException e) {
+            List<String[]> lines = new ArrayList<>();
+            lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});
+            csvWriter.executeLineByLine(lines);
             e.printStackTrace();
         }
 
@@ -75,7 +87,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
     }
 
     @Override
-    public void addArtist(Artist artist) {
+    public void addArtist(Artist artist) throws Exception {
         String sql1 = "INSERT INTO abstractentity (id, creationdate) " +
                 "VALUES (?, ?)";
         String sql2 = "INSERT INTO abstractperson (id, first_name, last_name, birth_date, description) VALUES (?, ?, ?, ?, ?)";
@@ -101,13 +113,18 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             preparedStatement3.setString(2, artist.getMovement().toString());
             preparedStatement3.executeUpdate();
 
+            List<String[]> lines = new ArrayList<>();
+            lines.add(new String[]{"Artist", artist.getFirstName(), artist.getLastName()});
+            csvWriter.executeLineByLine(lines);
+
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }
 
     @Override
-    public void removeArtistById(UUID id) {
+    public void removeArtistById(UUID id) throws Exception {
         String updateNameSql = "DELETE FROM artist WHERE id=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
@@ -116,13 +133,14 @@ public class ArtistRepositoryImpl implements ArtistRepository {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
 
     }
 
     @Override
-    public void removeArtistByFirstNameLastName(String firstName, String lastName) {
+    public void removeArtistByFirstNameLastName(String firstName, String lastName) throws Exception {
         String updateNameSql = "DELETE FROM artist WHERE first_name=? AND last_name=?";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
@@ -132,6 +150,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }

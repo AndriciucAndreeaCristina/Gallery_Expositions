@@ -11,7 +11,7 @@ import java.util.List;
 @SuperBuilder
 @Getter
 @EqualsAndHashCode
-public class Exhibition extends AbstractEntity {
+public sealed class Exhibition extends AbstractEntity permits PermanentExhibition, TemporaryExhibition {
     private String title;
     private String description;
     private List<Artwork> artworksList;

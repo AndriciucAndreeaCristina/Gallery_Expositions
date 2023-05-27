@@ -1,7 +1,7 @@
 package pao.services.interfaces.events;
 
 import pao.model.events.Event;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 
 import java.util.List;
 import java.util.Optional;

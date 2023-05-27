@@ -1,8 +1,9 @@
 package pao.application;
 
+import lombok.SneakyThrows;
 import pao.config.DatabaseConfiguration;
 import pao.exceptions.CustomNoDataException;
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.model.artworks.Artwork;
 import pao.model.artworks.enums.Materials;
 import pao.model.events.Course;
@@ -70,6 +71,7 @@ public class Gallery {
 
     private Gallery() throws SQLException {}
 
+    @SneakyThrows
     public void intro(Scanner scanner) {
 
         String intro = """
@@ -141,7 +143,7 @@ public class Gallery {
         return 0;
     }
 
-    private void managerFunctionalities(Scanner scanner) {
+    private void managerFunctionalities(Scanner scanner) throws Exception {
         System.out.println("What action would you like to perform?");
         System.out.println("        1 - Add an artist");
         System.out.println("        2 - Add an artwork");

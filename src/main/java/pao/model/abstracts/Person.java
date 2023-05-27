@@ -1,4 +1,4 @@
-package pao.model.events;
+package pao.model.abstracts;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,6 +8,6 @@ import pao.model.abstracts.AbstractPerson;
 @SuperBuilder
 @Getter
 @EqualsAndHashCode
-public class Person extends AbstractPerson {
+public non-sealed class Person extends AbstractPerson {
     private String ocupation;
 }

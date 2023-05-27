@@ -3,7 +3,7 @@ package pao.services.impl.events;
 import lombok.Getter;
 import pao.model.events.Course;
 import pao.model.events.Event;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 import pao.services.interfaces.events.EventInterface;
 
 import java.util.ArrayList;

@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException, SQLException {
         Scanner scanner = new Scanner(System.in);
         Gallery gallery = Gallery.getInstance();

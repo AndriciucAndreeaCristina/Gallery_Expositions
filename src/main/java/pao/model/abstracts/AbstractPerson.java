@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @SuperBuilder
 @ToString
 @EqualsAndHashCode
-public abstract class AbstractPerson extends AbstractEntity{
+public abstract sealed class AbstractPerson extends AbstractEntity permits Artist, Person {
    private String firstName;
    private String lastName;
    private LocalDate birthDate;

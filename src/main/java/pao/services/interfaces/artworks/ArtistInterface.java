@@ -1,6 +1,6 @@
 package pao.services.interfaces.artworks;
 
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 
 import java.util.Optional;
 import java.util.SortedSet;

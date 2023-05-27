@@ -1,6 +1,6 @@
 package pao.services.impl.artworks;
 
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.model.artworks.Artwork;
 import pao.services.interfaces.artworks.ArtworkInterface;
 

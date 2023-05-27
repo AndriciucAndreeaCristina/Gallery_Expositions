@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 import pao.model.abstracts.AbstractEntity;
+import pao.model.abstracts.Artist;
 import pao.model.artworks.enums.Materials;
 
 @Getter

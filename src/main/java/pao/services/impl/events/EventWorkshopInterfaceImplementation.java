@@ -2,7 +2,7 @@ package pao.services.impl.events;
 
 import pao.model.events.CreativeWorkshop;
 import pao.model.events.Event;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 import pao.services.interfaces.events.EventInterface;
 
 import java.util.ArrayList;

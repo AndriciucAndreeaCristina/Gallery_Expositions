@@ -1,6 +1,6 @@
 package pao.mappers;
 
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.model.floorplan.enums.SectionsType;
 
 import java.sql.ResultSet;

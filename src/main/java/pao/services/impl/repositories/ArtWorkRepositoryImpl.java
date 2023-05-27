@@ -2,7 +2,7 @@ package pao.services.impl.repositories;
 
 import pao.config.DatabaseConfiguration;
 import pao.mappers.ArtworkMapper;
-import pao.model.artworks.Artist;
+import pao.model.abstracts.Artist;
 import pao.model.artworks.Artwork;
 import pao.services.interfaces.repositories.ArtWorkRepository;
 
@@ -109,6 +109,7 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
 
             preparedStatement2.executeUpdate();
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
     }

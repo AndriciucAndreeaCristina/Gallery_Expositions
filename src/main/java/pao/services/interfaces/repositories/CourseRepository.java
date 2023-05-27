@@ -1,7 +1,7 @@
 package pao.services.interfaces.repositories;
 
 import pao.model.events.Course;
-import pao.model.events.Person;
+import pao.model.abstracts.Person;
 
 import java.util.List;
 import java.util.Optional;
