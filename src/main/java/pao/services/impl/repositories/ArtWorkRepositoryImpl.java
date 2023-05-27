@@ -88,18 +88,26 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
 
     @Override
     public void addArtwork(Artwork artwork) {
+
+        String sql1 = "INSERT INTO abstractentity (id) VALUES (?)";
+
         String insertSql = "INSERT INTO artwork (id, creator_id, title, yearOfCreation, description, material) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
-            preparedStatement.setString(1, artwork.getId().toString());
-            preparedStatement.setString(2, artwork.getCreator().getId().toString());
-            preparedStatement.setString(3, artwork.getTitle());
-            preparedStatement.setInt(4, artwork.getYearOfCreation());
-            preparedStatement.setString(5, artwork.getDescription());
-            preparedStatement.setString(6, String.valueOf(artwork.getMaterial()));
+             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+             PreparedStatement preparedStatement2 = connection.prepareStatement(insertSql);
+             ) {
+            preparedStatement1.setString(1, artwork.getId().toString());
+            preparedStatement1.executeUpdate();
+            Artist artist = artwork.getCreator();
+            preparedStatement2.setString(1, artwork.getId().toString());
+            preparedStatement2.setString(2, artist.getId().toString());
+            preparedStatement2.setString(3, artwork.getTitle());
+            preparedStatement2.setInt(4, artwork.getYearOfCreation());
+            preparedStatement2.setString(5, artwork.getDescription());
+            preparedStatement2.setString(6, String.valueOf(artwork.getMaterial()));
 
-            preparedStatement.executeUpdate();
+            preparedStatement2.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }

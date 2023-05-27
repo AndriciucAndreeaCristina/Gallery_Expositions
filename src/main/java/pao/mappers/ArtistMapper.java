@@ -22,7 +22,6 @@ public class ArtistMapper {
             return Optional.of(
                     Artist.builder()
                             .id(UUID.fromString(resultSet.getString(1)))
-                            .creationDate(resultSet.getDate(2).toLocalDate())
                             .firstName(resultSet.getString(3))
                             .lastName(resultSet.getString(4))
                             .birthDate(resultSet.getDate(5).toLocalDate())

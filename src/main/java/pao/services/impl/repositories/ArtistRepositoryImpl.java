@@ -23,14 +23,14 @@ public class ArtistRepositoryImpl implements ArtistRepository {
     @Override
     public Optional<Artist> getArtistByFirstName(String firstName) {
 
-        String selectSql = "SELECT * FROM artist WHERE first_name=?";
+        String selectSql = "SELECT * FROM abstractperson, artist WHERE first_name=? AND abstractperson.id = artist.id";
 
         try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
             preparedStatement.setString(1, firstName.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return Optional.ofNullable((Artist) artistMapper.mapToArtistClassList(resultSet));
+            return artistMapper.mapToArtistClass(resultSet);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,19 +76,33 @@ public class ArtistRepositoryImpl implements ArtistRepository {
 
     @Override
     public void addArtist(Artist artist) {
-        String selectSql = "UPDATE artist SET first_name=?, last_name=?, birth_date=?, description=?, movement=?,  WHERE id=?";
-        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
-            preparedStatement.setString(1, artist.getFirstName().toString());
-            preparedStatement.setString(2, artist.getLastName().toString());
-            preparedStatement.setString(3, artist.getBirthDate().toString());
-            preparedStatement.setString(4, artist.getDescription().toString());
-            preparedStatement.setString(5, artist.getMovement().toString());
+        String sql1 = "INSERT INTO abstractentity (id, creationdate) " +
+                "VALUES (?, ?)";
+        String sql2 = "INSERT INTO abstractperson (id, first_name, last_name, birth_date, description) VALUES (?, ?, ?, ?, ?)";
 
-            preparedStatement.executeUpdate();
+        String selectSql = "INSERT INTO artist  (id, movement) VALUES (?, ?)";
+        try (Connection connection = DatabaseConfiguration.getDatabaseConnection();
+             PreparedStatement preparedStatement1 = connection.prepareStatement(sql1);
+             PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
+             PreparedStatement preparedStatement3 = connection.prepareStatement(selectSql)) {
+
+            preparedStatement1.setObject(1, artist.getId());
+            preparedStatement1.setObject(2, artist.getCreationDate());
+            preparedStatement1.executeUpdate();
+
+            preparedStatement2.setObject(1, artist.getId());
+            preparedStatement2.setObject(2, artist.getFirstName());
+            preparedStatement2.setObject(3, artist.getLastName());
+            preparedStatement2.setObject(4, artist.getBirthDate());
+            preparedStatement2.setObject(5, artist.getDescription());
+            preparedStatement2.executeUpdate();
+
+            preparedStatement3.setString(1, artist.getId().toString());
+            preparedStatement3.setString(2, artist.getMovement().toString());
+            preparedStatement3.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

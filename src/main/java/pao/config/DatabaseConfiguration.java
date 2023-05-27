@@ -35,6 +35,8 @@ public class DatabaseConfiguration {
         return databaseConnection;
     }
 
+
+
     public static void closeDatabaseConnection() {
         try {
             if(databaseConnection ==  null) {
