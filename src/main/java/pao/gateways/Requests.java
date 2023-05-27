@@ -1,6 +1,5 @@
 package pao.gateways;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import pao.services.impl.artworks.ArtistInterfaceImplementation;
 import pao.services.interfaces.artworks.ArtistInterface;
 
@@ -13,7 +12,6 @@ import java.net.http.HttpResponse;
 
 public class Requests {
     private static HttpClient httpClient = HttpClient.newHttpClient();
-    private static ObjectMapper objectMapper = new ObjectMapper();
 
     private ArtistInterface artistInterface = new ArtistInterfaceImplementation();
     public void saveNewArtistInfo() throws URISyntaxException, IOException, InterruptedException {
