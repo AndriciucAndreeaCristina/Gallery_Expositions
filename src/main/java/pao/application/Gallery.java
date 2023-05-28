@@ -104,6 +104,7 @@ public class Gallery {
             System.out.println("Something went wrong! Please try again!");
             exit(0);
         }
+        connection.close();
 
     }
 
