@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import pao.model.abstracts.Artist;
 import pao.model.floorplan.enums.SectionsType;
 
@@ -32,6 +33,20 @@ public class ArtistMapper {
         } else {
             return Optional.empty();
         }
+    }
+
+    public Artist artistMapper(JsonNode jsonNode) {
+        String artistTitleString = jsonNode.path("artist_title").asText();
+        String publicationHistory = jsonNode.path("exhibition_history").asText();
+
+        Artist artist = Artist.builder()
+                .id(UUID.randomUUID())
+                .firstName(artistTitleString)
+                .description(publicationHistory)
+                .build();
+
+        //System.out.println("Artist: " + artist.getFirstName());
+        return artist;
     }
 
     public List<Artist> mapToArtistClassList(ResultSet resultSet) throws SQLException {

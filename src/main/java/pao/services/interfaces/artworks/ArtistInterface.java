@@ -2,6 +2,7 @@ package pao.services.interfaces.artworks;
 
 import pao.model.abstracts.Artist;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.SortedSet;
 import java.util.UUID;
@@ -12,7 +13,7 @@ public interface ArtistInterface {
     Optional<Artist> getArtistByLastName(String lastName);
     Optional<Artist> getArtistById(UUID id);
 
-    SortedSet<Artist> getAllArtistsFromList();
+    List<Artist> getAllArtistsFromList();
     void addAllArtists(SortedSet<Artist> artistsList);
     void addArtist(Artist artist);
     void removeArtistById(UUID id);
