@@ -26,7 +26,7 @@ public class RoomRepositoryImpl implements RoomRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return roomMapper.mapToRoomClass(resultSet);
+                return roomMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class RoomRepositoryImpl implements RoomRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return roomMapper.mapToRoomClass(resultSet);
+                return roomMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,9 +64,10 @@ public class RoomRepositoryImpl implements RoomRepository {
             preparedStatement.setInt(1, floor);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                rooms = RoomMapper.mapToRoomClassList(resultSet);
+            while (resultSet.next()) {
+                rooms = roomMapper.mapToClassList(resultSet);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -23,7 +23,7 @@ public class TemporaryExhibitionRepositoryImpl implements TemporaryExhibitionRep
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return temporaryExhibitionMapper.mapToTemporaryExhibitionClass(resultSet);
+                return temporaryExhibitionMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -41,8 +41,8 @@ public class TemporaryExhibitionRepositoryImpl implements TemporaryExhibitionRep
             preparedStatement.setString(1, title);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                exhibitions = temporaryExhibitionMapper.mapToTemporaryExhibitionClassList(resultSet);
+            if (resultSet.next()) {
+                exhibitions = temporaryExhibitionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class TemporaryExhibitionRepositoryImpl implements TemporaryExhibitionRep
              ResultSet resultSet = statement.executeQuery(selectSql)) {
 
             while (resultSet.next()) {
-                exhibitions = temporaryExhibitionMapper.mapToTemporaryExhibitionClassList(resultSet);
+                exhibitions = temporaryExhibitionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

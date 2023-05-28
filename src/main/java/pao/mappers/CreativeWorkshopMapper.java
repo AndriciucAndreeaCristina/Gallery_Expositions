@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.events.CreativeWorkshop;
 import pao.model.abstracts.Person;
 import pao.model.events.enums.FormatType;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class CreativeWorkshopMapper {
+public class CreativeWorkshopMapper implements Mapper<CreativeWorkshop> {
     private static final CreativeWorkshopMapper INSTANCE = new CreativeWorkshopMapper();
 
     private CreativeWorkshopMapper() {
@@ -23,7 +24,8 @@ public class CreativeWorkshopMapper {
         return INSTANCE;
     }
 
-    public Optional<CreativeWorkshop> mapToCreativeWorkshopClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<CreativeWorkshop> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     CreativeWorkshop.builder()
@@ -43,7 +45,8 @@ public class CreativeWorkshopMapper {
         }
     }
 
-    public List<CreativeWorkshop> mapToCreativeWorkshopClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<CreativeWorkshop> mapToClassList(ResultSet resultSet) throws SQLException {
         List<CreativeWorkshop> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

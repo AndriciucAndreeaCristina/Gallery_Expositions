@@ -23,7 +23,7 @@ public class CreativeWorkshopRepositoryImpl implements CreativeWorkshopRepositor
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return creativeWorkshopMapper.mapToCreativeWorkshopClass(resultSet);
+                return creativeWorkshopMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class CreativeWorkshopRepositoryImpl implements CreativeWorkshopRepositor
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                creativeWorkshops = creativeWorkshopMapper.mapToCreativeWorkshopClassList(resultSet);
+                creativeWorkshops = creativeWorkshopMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

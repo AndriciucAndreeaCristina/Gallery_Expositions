@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.events.Course;
 import pao.model.abstracts.Person;
 import pao.model.events.enums.FormatType;
@@ -9,7 +10,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
-public class CourseMapper {
+public class CourseMapper implements Mapper<Course> {
     private static final CourseMapper INSTANCE = new CourseMapper();
 
     private CourseMapper() {
@@ -18,8 +19,8 @@ public class CourseMapper {
     public static CourseMapper getInstance() {
         return INSTANCE;
     }
-
-    public Optional<Course> mapToCourseClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<Course> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     Course.builder()
@@ -38,7 +39,8 @@ public class CourseMapper {
         }
     }
 
-    public List<Course> mapToCourseClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<Course> mapToClassList(ResultSet resultSet) throws SQLException {
         List<Course> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

@@ -24,7 +24,7 @@ public class SectionRepositoryImpl implements SectionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return sectionMapper.mapToSectionClass(resultSet);
+                return sectionMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,7 +44,7 @@ public class SectionRepositoryImpl implements SectionRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                sections = sectionMapper.mapToSectionClassList(resultSet);
+                sections = sectionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +62,7 @@ public class SectionRepositoryImpl implements SectionRepository {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(selectSql)) {
             if (resultSet.next()) {
-                sections = sectionMapper.mapToSectionClassList(resultSet);
+                sections = sectionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

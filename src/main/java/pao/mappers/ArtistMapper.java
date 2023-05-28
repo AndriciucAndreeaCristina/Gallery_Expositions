@@ -1,6 +1,7 @@
 package pao.mappers;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import pao.generics.Mapper;
 import pao.model.abstracts.Artist;
 import pao.model.floorplan.enums.SectionsType;
 
@@ -11,14 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ArtistMapper {
+public class ArtistMapper implements Mapper<Artist> {
     private static final ArtistMapper INSTANCE = new ArtistMapper();
 
     public static ArtistMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<Artist> mapToArtistClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<Artist> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     Artist.builder()
@@ -49,7 +51,8 @@ public class ArtistMapper {
         return artist;
     }
 
-    public List<Artist> mapToArtistClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<Artist> mapToClassList(ResultSet resultSet) throws SQLException {
         List<Artist> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

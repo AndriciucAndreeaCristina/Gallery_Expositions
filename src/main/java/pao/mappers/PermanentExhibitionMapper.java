@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.artworks.Artwork;
 import pao.model.exhibitions.PermanentExhibition;
 import pao.model.floorplan.Section;
@@ -11,14 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class PermanentExhibitionMapper {
+public class PermanentExhibitionMapper implements Mapper<PermanentExhibition> {
     private static final PermanentExhibitionMapper INSTANCE = new PermanentExhibitionMapper();
 
     public static PermanentExhibitionMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<PermanentExhibition> mapToPermanentExhibitionClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<PermanentExhibition> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     PermanentExhibition.builder()
@@ -34,7 +36,8 @@ public class PermanentExhibitionMapper {
         }
     }
 
-    public List<PermanentExhibition> mapToPermanentExhibitionClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<PermanentExhibition> mapToClassList(ResultSet resultSet) throws SQLException {
         List<PermanentExhibition> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

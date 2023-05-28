@@ -33,7 +33,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             preparedStatement.setString(1, firstName.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return artistMapper.mapToArtistClass(resultSet);
+            return artistMapper.mapToClass(resultSet);
         } catch (SQLException e) {
             List<String[]> lines = new ArrayList<>();
             lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});
@@ -54,7 +54,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             preparedStatement.setString(1, lastName.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return Optional.ofNullable(artistMapper.mapToArtistClassList(resultSet));
+            return Optional.ofNullable(artistMapper.mapToClassList(resultSet));
         } catch (SQLException e) {
             List<String[]> lines = new ArrayList<>();
             lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});
@@ -75,7 +75,7 @@ public class ArtistRepositoryImpl implements ArtistRepository {
             preparedStatement.setString(1, id.toString());
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            return artistMapper.mapToArtistClass(resultSet);
+            return artistMapper.mapToClass(resultSet);
         } catch (SQLException e) {
             List<String[]> lines = new ArrayList<>();
             lines.add(new String[]{e.getMessage(), e.getLocalizedMessage()});

@@ -1,22 +1,21 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.floorplan.Room;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class RoomMapper {
+public class RoomMapper implements Mapper<Room> {
     private static final RoomMapper INSTANCE = new RoomMapper();
 
     public static RoomMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<Room> mapToRoomClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<Room> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     Room.builder()
@@ -30,7 +29,8 @@ public class RoomMapper {
         }
     }
 
-    public static List<Room> mapToRoomClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<Room> mapToClassList(ResultSet resultSet) throws SQLException {
         List<Room> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

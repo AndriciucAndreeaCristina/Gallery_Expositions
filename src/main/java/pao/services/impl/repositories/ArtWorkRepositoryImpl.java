@@ -23,7 +23,7 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return artworkMapper.mapToArtworkClass(resultSet);
+                return artworkMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-               return artworkMapper.mapToArtistClassList(resultSet);
+               return artworkMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,7 +60,7 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return artworkMapper.mapToArtworkClass(resultSet);
+                return artworkMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -77,7 +77,7 @@ public class ArtWorkRepositoryImpl implements ArtWorkRepository {
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SELECT_ALL_SQL)) {
             while (resultSet.next()) {
-                return artworkMapper.mapToArtistClassList(resultSet);
+                return artworkMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

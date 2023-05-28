@@ -23,7 +23,7 @@ public class PermanentExhibitionRepositoryImpl implements PermanentExhibitionRep
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return permanentExhibitionMapper.mapToPermanentExhibitionClass(resultSet);
+                return permanentExhibitionMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class PermanentExhibitionRepositoryImpl implements PermanentExhibitionRep
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                exhibitions = permanentExhibitionMapper.mapToPermanentExhibitionClassList(resultSet);
+                exhibitions = permanentExhibitionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class PermanentExhibitionRepositoryImpl implements PermanentExhibitionRep
              ResultSet resultSet = statement.executeQuery(selectSql)) {
 
             while (resultSet.next()) {
-                exhibitions = permanentExhibitionMapper.mapToPermanentExhibitionClassList(resultSet);
+                exhibitions = permanentExhibitionMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

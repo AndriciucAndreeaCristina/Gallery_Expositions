@@ -27,7 +27,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                return courseMapper.mapToCourseClass(resultSet);
+                return courseMapper.mapToClass(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                courses =courseMapper.mapToCourseClassList(resultSet);
+                courses =courseMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                courses = courseMapper.mapToCourseClassList(resultSet);
+                courses = courseMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class CourseRepositoryImpl implements CourseRepository {
 
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                courses = courseMapper.mapToCourseClassList(resultSet);
+                courses = courseMapper.mapToClassList(resultSet);
             }
         } catch (SQLException e) {
             e.printStackTrace();

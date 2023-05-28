@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.artworks.Artwork;
 import pao.model.artworks.enums.Materials;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ArtworkMapper {
+public class ArtworkMapper implements Mapper<Artwork> {
     private static final ArtworkMapper INSTANCE = new ArtworkMapper();
 
     private ArtworkMapper() {
@@ -20,7 +21,8 @@ public class ArtworkMapper {
         return INSTANCE;
     }
 
-    public Optional<Artwork> mapToArtworkClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<Artwork> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     Artwork.builder()
@@ -38,7 +40,8 @@ public class ArtworkMapper {
         }
     }
 
-    public List<Artwork> mapToArtistClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<Artwork> mapToClassList(ResultSet resultSet) throws SQLException {
         List<Artwork> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(

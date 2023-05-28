@@ -1,5 +1,6 @@
 package pao.mappers;
 
+import pao.generics.Mapper;
 import pao.model.artworks.Artwork;
 import pao.model.exhibitions.TemporaryExhibition;
 import pao.model.floorplan.Room;
@@ -11,14 +12,15 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class TemporaryExhibitionMapper {
+public class TemporaryExhibitionMapper implements Mapper<TemporaryExhibition> {
     private static final TemporaryExhibitionMapper INSTANCE = new TemporaryExhibitionMapper();
 
     public static TemporaryExhibitionMapper getInstance() {
         return INSTANCE;
     }
 
-    public Optional<TemporaryExhibition> mapToTemporaryExhibitionClass(ResultSet resultSet) throws SQLException {
+    @Override
+    public Optional<TemporaryExhibition> mapToClass(ResultSet resultSet) throws SQLException {
         if (resultSet.next()) {
             return Optional.of(
                     TemporaryExhibition.builder()
@@ -36,7 +38,8 @@ public class TemporaryExhibitionMapper {
         }
     }
 
-    public List<TemporaryExhibition> mapToTemporaryExhibitionClassList(ResultSet resultSet) throws SQLException {
+    @Override
+    public List<TemporaryExhibition> mapToClassList(ResultSet resultSet) throws SQLException {
         List<TemporaryExhibition> exampleClassList = new ArrayList<>();
         while (resultSet.next()) {
             exampleClassList.add(
