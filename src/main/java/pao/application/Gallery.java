@@ -202,6 +202,7 @@ public class Gallery {
                             .description(description)
                             .movement(SectionsType.values()[movement-1])
                             .build();
+
                     artistRepository.addArtist(artist);
                     //System.out.println(artistRepository.getAllArtistsFromList());
                     break;
